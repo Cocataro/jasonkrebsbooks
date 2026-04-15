@@ -1,0 +1,95 @@
+---
+// MailerLite embedded signup form.
+// API handled by /api/subscribe.ts (to be added if you want server-side handling).
+// For static-only, this uses MailerLite's direct POST endpoint + JavaScript.
+---
+
+<div class="newsletter-card">
+  <h3>Stay warm by the hearth</h3>
+  <p>
+    New cozy fantasy, occasional book recommendations, early looks at the next
+    Crossroads Inn book. No spam, unsubscribe any time.
+  </p>
+
+  <form id="newsletter-form" class="newsletter-form">
+    <input
+      type="email"
+      name="email"
+      placeholder="your@email.com"
+      required
+      aria-label="Email address"
+    />
+    <button type="submit">Subscribe</button>
+  </form>
+  <p id="newsletter-message" class="newsletter-message" aria-live="polite"></p>
+</div>
+
+<style>
+  .newsletter-card {
+    background: var(--bg-accent);
+    padding: 2rem 1.75rem;
+    border-radius: 4px;
+    margin: 3rem 0;
+  }
+  .newsletter-card h3 {
+    margin-top: 0;
+    color: var(--ink);
+  }
+  .newsletter-card p {
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+  }
+  .newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  .newsletter-form input {
+    flex: 1 1 16rem;
+  }
+  .newsletter-message {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    min-height: 1.2rem;
+  }
+  .newsletter-message.success { color: var(--leaf); }
+  .newsletter-message.error { color: #a54040; }
+</style>
+
+<script>
+  // Progressive-enhancement signup. Uses MailerLite's /api/subscribers endpoint
+  // via a Vercel Edge Function or similar at /api/subscribe — or replace with
+  // MailerLite's HTML embed form code if you prefer to outsource.
+  const form = document.getElementById('newsletter-form') as HTMLFormElement | null;
+  const msg = document.getElementById('newsletter-message');
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!msg) return;
+    const data = new FormData(form);
+    const email = data.get('email');
+    msg.textContent = 'Subscribing...';
+    msg.className = 'newsletter-message';
+
+    try {
+      const res = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      if (res.ok) {
+        msg.textContent = 'Subscribed. Welcome to the inn.';
+        msg.className = 'newsletter-message success';
+        form.reset();
+      } else {
+        const j = await res.json().catch(() => ({}));
+        msg.textContent = j.error || 'Something went wrong. Try again.';
+        msg.className = 'newsletter-message error';
+      }
+    } catch {
+      msg.textContent = 'Network error. Try again.';
+      msg.className = 'newsletter-message error';
+    }
+  });
+</script>
