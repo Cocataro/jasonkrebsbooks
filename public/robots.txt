@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jasonkrebsbooks.com/sitemap-index.xml

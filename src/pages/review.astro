@@ -1,0 +1,15 @@
+---
+// Branded short link for review CTAs in back-matter.
+// Update `asin` per book, or leave pointed at the author page for series-wide review.
+const reviewUrl = 'https://www.amazon.com/author/jasonkrebs';
+---
+<html>
+<head>
+  <meta http-equiv="refresh" content={`0; URL=${reviewUrl}`} />
+  <title>Leave a review</title>
+  <link rel="canonical" href={reviewUrl} />
+</head>
+<body>
+  <p><a href={reviewUrl}>Continue to Amazon to leave a review →</a></p>
+</body>
+</html>

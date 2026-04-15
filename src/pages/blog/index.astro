@@ -1,0 +1,66 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('posts'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+---
+
+<Layout title="Blog — Jason Krebs" description="Notes from Jason Krebs on cozy fantasy, reading, and writing.">
+  <main>
+    <h1>From the inn</h1>
+    <p class="tagline">Notes on cozy fantasy, book recommendations, and occasional thoughts.</p>
+
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li>
+          <a href={`/blog/${post.slug}/`}>
+            <h2>{post.data.title}</h2>
+            <time datetime={post.data.publishedAt.toISOString()}>
+              {post.data.publishedAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </time>
+            <p>{post.data.description}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </main>
+</Layout>
+
+<style>
+  .post-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+  }
+  .post-list li {
+    margin: 2rem 0;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--bg-accent);
+  }
+  .post-list li:last-child { border-bottom: none; }
+  .post-list a {
+    display: block;
+    border-bottom: none;
+    color: var(--ink);
+  }
+  .post-list a:hover {
+    color: var(--warm);
+    border-bottom: none;
+  }
+  .post-list h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.5rem;
+  }
+  .post-list time {
+    display: block;
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  .post-list p {
+    color: var(--ink-soft);
+    margin: 0;
+  }
+</style>

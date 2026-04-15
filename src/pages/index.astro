@@ -1,0 +1,74 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Newsletter from '../components/Newsletter.astro';
+
+const title = 'Jason Krebs — Cozy Fantasy';
+const description = 'Cozy fantasy novels by Jason Krebs. The Crossroads Inn series — books for rainy afternoons.';
+---
+
+<Layout title={title} description={description}>
+  <main>
+    <header class="hero">
+      <p class="eyebrow">A cozy fantasy series</p>
+      <h1>The Crossroads Inn</h1>
+      <p class="tagline">
+        An ex-mercenary becomes the reluctant keeper of a magical inn at the
+        crossroads of five realms — healing others while trying to outrun her
+        own past.
+      </p>
+      <p class="soon">Book 1 coming soon.</p>
+    </header>
+
+    <section class="about-preview">
+      <h2>About Jason</h2>
+      <p>
+        Jason Krebs writes cozy fantasy about tired people, warm rooms, and
+        found families. He drinks more tea than coffee, lives somewhere drafty,
+        and believes the best stories start with someone opening a door.
+      </p>
+      <p>
+        <a href="/about">More about Jason →</a>
+      </p>
+    </section>
+
+    <hr />
+
+    <Newsletter />
+
+    <section class="blog-preview">
+      <h2>From the inn</h2>
+      <p class="tagline">Notes on cozy fantasy, reading recommendations, and quiet thoughts.</p>
+      <p>
+        <a href="/blog">Read the blog →</a>
+      </p>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .hero {
+    text-align: center;
+    padding: 2rem 0 4rem;
+  }
+  .eyebrow {
+    color: var(--warm);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+    font-family: 'EB Garamond', serif;
+  }
+  .hero h1 {
+    font-size: 3.5rem;
+    margin: 0.5rem 0 1rem;
+  }
+  .soon {
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-top: 2rem;
+  }
+  .about-preview, .blog-preview {
+    margin: 3rem 0;
+  }
+</style>

@@ -1,0 +1,131 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'Jason Krebs — Cozy Fantasy',
+  description = 'Cozy fantasy novels by Jason Krebs. The Crossroads Inn series — books for rainy afternoons.',
+  ogImage = '/og-default.jpg',
+} = Astro.props;
+
+const siteUrl = import.meta.env.PUBLIC_SITE_URL || 'https://jasonkrebsbooks.com';
+const canonical = new URL(Astro.url.pathname, siteUrl).toString();
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+
+  <title>{title}</title>
+  <link rel="canonical" href={canonical} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="alternate" type="application/rss+xml" title="Jason Krebs Blog" href="/rss.xml" />
+  <link rel="sitemap" href="/sitemap-index.xml" />
+
+  <!-- OpenGraph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={new URL(ogImage, siteUrl).toString()} />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={new URL(ogImage, siteUrl).toString()} />
+
+  <!-- Web font: warm serif for headings; system stack for body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@400;600&display=swap" rel="stylesheet" />
+
+  <style is:global>
+    :root {
+      --bg: #faf6ef;
+      --bg-accent: #f3ebd9;
+      --ink: #2a2017;
+      --ink-soft: #4e4236;
+      --warm: #a8663a;
+      --warm-soft: #c98c5a;
+      --leaf: #556b4a;
+      --max-width: 68ch;
+    }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+      font-size: 20px;
+      line-height: 1.6;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'EB Garamond', Georgia, serif;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+    h1 { font-size: 2.8rem; margin: 0 0 1rem; }
+    h2 { font-size: 2rem; margin: 2rem 0 1rem; }
+    a { color: var(--warm); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 200ms; }
+    a:hover { border-bottom-color: var(--warm); }
+    main { max-width: var(--max-width); margin: 0 auto; padding: 4rem 1.25rem; }
+    img { max-width: 100%; height: auto; }
+    .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.25rem; }
+    .tagline { color: var(--ink-soft); font-style: italic; font-size: 1.1rem; }
+    button, .button {
+      font-family: 'EB Garamond', serif;
+      background: var(--warm);
+      color: #fffaf0;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 200ms;
+    }
+    button:hover, .button:hover { background: var(--warm-soft); border-bottom: none; }
+    input[type="email"], input[type="text"] {
+      font-family: inherit;
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--warm-soft);
+      background: #fffaf0;
+      border-radius: 2px;
+      width: 100%;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid var(--warm-soft);
+      margin: 3rem 0;
+      opacity: 0.4;
+    }
+    footer {
+      max-width: var(--max-width);
+      margin: 4rem auto 2rem;
+      padding: 2rem 1.25rem 0;
+      border-top: 1px solid var(--warm-soft);
+      color: var(--ink-soft);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <slot />
+  <footer>
+    <p>© {new Date().getFullYear()} Jason Krebs. All rights reserved.</p>
+    <p style="font-size: 0.85rem; opacity: 0.7;">
+      <a href="/about">About</a> · <a href="/blog">Blog</a> · <a href="/books">Books</a> · <a href="/rss.xml">RSS</a>
+    </p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,65 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Newsletter from '../../components/Newsletter.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={`${post.data.title} — Jason Krebs`} description={post.data.description}>
+  <main>
+    <article>
+      <header>
+        <h1>{post.data.title}</h1>
+        <time datetime={post.data.publishedAt.toISOString()}>
+          {post.data.publishedAt.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+      </header>
+
+      <div class="content">
+        <Content />
+      </div>
+
+      <footer class="post-footer">
+        <p>— Jason</p>
+      </footer>
+    </article>
+
+    <hr />
+
+    <Newsletter />
+
+    <p class="back"><a href="/blog">← Back to all posts</a></p>
+  </main>
+</Layout>
+
+<style>
+  article header {
+    margin-bottom: 3rem;
+  }
+  article time {
+    color: var(--ink-soft);
+    font-size: 0.9rem;
+  }
+  .content p { margin: 1.25rem 0; }
+  .content h2, .content h3 {
+    margin-top: 2.5rem;
+  }
+  .post-footer {
+    margin-top: 3rem;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  .back {
+    margin-top: 3rem;
+  }
+</style>

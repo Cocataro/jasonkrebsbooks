@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout title="Books by Jason Krebs" description="The Crossroads Inn series — six cozy fantasy novels by Jason Krebs.">
+  <main>
+    <h1>Books</h1>
+
+    <section class="book">
+      <h2>The Crossroads Inn</h2>
+      <p class="tagline">A cozy fantasy series in six books.</p>
+
+      <div class="books-list">
+        <article class="book-entry upcoming">
+          <h3>Book 1 — <em>The Keeper's Reluctance</em></h3>
+          <p>Coming soon.</p>
+        </article>
+
+        <article class="book-entry upcoming">
+          <h3>Book 2 — <em>(title to be announced)</em></h3>
+          <p>In draft.</p>
+        </article>
+
+        <article class="book-entry upcoming">
+          <h3>Books 3–6</h3>
+          <p>In the outline stage.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .books-list { margin-top: 2rem; }
+  .book-entry {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--bg-accent);
+  }
+  .book-entry:last-child { border-bottom: none; }
+  .book-entry h3 { margin: 0 0 0.5rem; }
+  .book-entry em { color: var(--warm); font-style: normal; }
+  .upcoming { opacity: 0.85; }
+</style>

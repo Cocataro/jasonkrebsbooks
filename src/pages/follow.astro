@@ -1,0 +1,15 @@
+---
+// Branded short link. Redirects to Amazon Author Central follow URL.
+// Update the URL below once the Amazon author page is live.
+const amazonFollowUrl = 'https://www.amazon.com/author/jasonkrebs';
+---
+<html>
+<head>
+  <meta http-equiv="refresh" content={`0; URL=${amazonFollowUrl}`} />
+  <title>Follow Jason on Amazon</title>
+  <link rel="canonical" href={amazonFollowUrl} />
+</head>
+<body>
+  <p><a href={amazonFollowUrl}>Continue to Amazon →</a></p>
+</body>
+</html>
