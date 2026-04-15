@@ -1,45 +1,273 @@
 ---
-// Newsletter signup card.
-// After Nicole creates a MailerLite Embedded Form (Forms → Create → Embedded),
-// replace the form + script block below with the HTML MailerLite generates.
-// The form they give you is self-contained JavaScript — it handles subscribe
-// directly to MailerLite's API without needing a server endpoint.
+// Cozy-inn styled newsletter signup.
+// Posts directly to MailerLite's unauthenticated form-subscribe endpoint —
+// no server, no token exposed, no /api/ route needed.
 //
-// Current state: placeholder UI that prompts reader to email directly.
-// This is safe-to-ship; wire MailerLite form on next revision.
+// Account ID: 2271322   (from your MailerLite embed URL)
+// Form ID:    184855632701032232
+//
+// To replace the form visual with an illustration, drop an image into
+// /public/illustrations/inn-ledger.jpg and set hasIllustration=true below.
 ---
 
-<div class="newsletter-card">
-  <h3>Stay warm by the hearth</h3>
-  <p>
-    New cozy fantasy, occasional book recommendations, early looks at the next
-    Crossroads Inn book. No spam, unsubscribe any time.
-  </p>
+<section class="newsletter">
+  <div class="newsletter-card">
+    <div class="newsletter-illustration" aria-hidden="true">
+      <!-- Placeholder SVG flourish. Replace with a real illustration when generated. -->
+      <svg viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Open book / ledger -->
+          <path d="M40 100 C40 90, 60 88, 80 95 C100 88, 120 90, 120 100 L120 128 C120 120, 100 118, 80 125 C60 118, 40 120, 40 128 Z"/>
+          <path d="M80 95 L80 125"/>
+          <!-- Pages -->
+          <path d="M50 103 L75 106" opacity="0.5"/>
+          <path d="M50 109 L73 111" opacity="0.5"/>
+          <path d="M50 115 L74 117" opacity="0.5"/>
+          <path d="M87 106 L110 103" opacity="0.5"/>
+          <path d="M87 112 L108 109" opacity="0.5"/>
+          <path d="M87 118 L110 115" opacity="0.5"/>
+          <!-- Quill -->
+          <path d="M95 48 L130 18"/>
+          <path d="M130 18 C135 22, 135 28, 130 32 L95 52 Z" fill="currentColor" opacity="0.15"/>
+          <!-- Ink drop -->
+          <circle cx="88" cy="58" r="2" fill="currentColor"/>
+          <!-- Hearth curl -->
+          <path d="M25 40 C30 30, 25 25, 30 15" opacity="0.6"/>
+          <path d="M18 50 C22 42, 17 38, 20 28" opacity="0.4"/>
+        </g>
+      </svg>
+    </div>
 
-  <p class="signup-note">
-    Newsletter signup coming shortly.
-    In the meantime, drop a line to
-    <a href="mailto:hello@jasonkrebsbooks.com?subject=Newsletter%20signup&body=Please%20add%20me%20to%20the%20Crossroads%20Inn%20newsletter.">hello@jasonkrebsbooks.com</a>
-    and you'll be added as soon as the list opens.
-  </p>
-</div>
+    <div class="newsletter-text">
+      <h3>Sign the guestbook</h3>
+      <p class="lead">
+        New cozy fantasy. Occasional reading recommendations. Early looks at the
+        next Crossroads Inn book, when it's ready.
+      </p>
+      <p class="small">No spam. No schedule. Unsubscribe whenever.</p>
+
+      <form
+        id="newsletter-form"
+        class="newsletter-form"
+        action="https://assets.mailerlite.com/jsonp/2271322/forms/184855632701032232/subscribe"
+        method="POST"
+      >
+        <label class="visually-hidden" for="newsletter-email">Email address</label>
+        <input
+          id="newsletter-email"
+          type="email"
+          name="fields[email]"
+          placeholder="your@email.com"
+          autocomplete="email"
+          required
+        />
+        <input type="hidden" name="ml-submit" value="1" />
+        <input type="hidden" name="anticsrf" value="true" />
+        <button type="submit">
+          <span>Sign</span>
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M5 12 L19 12 M13 6 L19 12 L13 18" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </form>
+      <p id="newsletter-message" class="newsletter-message" aria-live="polite"></p>
+    </div>
+  </div>
+</section>
 
 <style>
+  .newsletter {
+    margin: 3.5rem 0;
+  }
   .newsletter-card {
-    background: var(--bg-accent);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+    background:
+      linear-gradient(135deg, rgba(243, 235, 217, 0.9), rgba(250, 246, 239, 0.9)),
+      radial-gradient(ellipse at top left, rgba(168, 102, 58, 0.08), transparent 60%),
+      radial-gradient(ellipse at bottom right, rgba(85, 107, 74, 0.06), transparent 60%);
+    border: 1px solid rgba(168, 102, 58, 0.25);
+    border-radius: 6px;
     padding: 2rem 1.75rem;
-    border-radius: 4px;
-    margin: 3rem 0;
+    position: relative;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 250, 240, 0.6),
+      0 2px 0 rgba(168, 102, 58, 0.08),
+      0 12px 32px -12px rgba(42, 32, 23, 0.1);
   }
-  .newsletter-card h3 {
-    margin-top: 0;
-    color: var(--ink);
+  /* Warm corner ornaments */
+  .newsletter-card::before,
+  .newsletter-card::after {
+    content: "";
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(168, 102, 58, 0.4);
+    opacity: 0.6;
   }
-  .newsletter-card p {
-    color: var(--ink-soft);
-    font-size: 0.95rem;
+  .newsletter-card::before {
+    top: 10px; left: 10px;
+    border-right: none;
+    border-bottom: none;
   }
-  .signup-note a {
+  .newsletter-card::after {
+    bottom: 10px; right: 10px;
+    border-left: none;
+    border-top: none;
+  }
+
+  @media (min-width: 640px) {
+    .newsletter-card {
+      grid-template-columns: 140px 1fr;
+      padding: 2.25rem 2rem;
+      gap: 2rem;
+      align-items: center;
+    }
+  }
+
+  .newsletter-illustration {
+    display: none;
     color: var(--warm);
   }
+  .newsletter-illustration svg {
+    width: 100%;
+    height: auto;
+  }
+  @media (min-width: 640px) {
+    .newsletter-illustration {
+      display: block;
+    }
+  }
+
+  .newsletter-text h3 {
+    margin: 0 0 0.5rem;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .newsletter-text .lead {
+    margin: 0 0 0.5rem;
+    color: var(--ink-soft);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .newsletter-text .small {
+    margin: 0 0 1.25rem;
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+    opacity: 0.8;
+    font-style: italic;
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .newsletter-form input[type="email"] {
+    flex: 1 1 14rem;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid rgba(168, 102, 58, 0.4);
+    background: #fffcf6;
+    border-radius: 3px;
+    font-family: 'Crimson Pro', Georgia, serif;
+    font-size: 1rem;
+    color: var(--ink);
+    transition: border-color 200ms, background 200ms;
+  }
+  .newsletter-form input[type="email"]:focus {
+    outline: none;
+    border-color: var(--warm);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(168, 102, 58, 0.15);
+  }
+  .newsletter-form input[type="email"]::placeholder {
+    color: rgba(78, 66, 54, 0.5);
+  }
+
+  .newsletter-form button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--warm);
+    color: #fffaf0;
+    border: none;
+    padding: 0.7rem 1.25rem;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 200ms, transform 100ms;
+  }
+  .newsletter-form button:hover {
+    background: #8f5530;
+  }
+  .newsletter-form button:active {
+    transform: translateY(1px);
+  }
+
+  .newsletter-message {
+    margin: 0.75rem 0 0;
+    font-size: 0.9rem;
+    min-height: 1.2rem;
+    color: var(--ink-soft);
+  }
+  .newsletter-message.success { color: var(--leaf); font-weight: 600; }
+  .newsletter-message.error { color: #9a4040; }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap; border: 0;
+  }
 </style>
+
+<script>
+  // Intercept the native form submit so we can show inline feedback
+  // without a full page reload to MailerLite's confirmation page.
+  const form = document.getElementById('newsletter-form') as HTMLFormElement | null;
+  const msg = document.getElementById('newsletter-message');
+
+  if (form && msg) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const emailInput = form.querySelector<HTMLInputElement>('input[type="email"]');
+      const email = emailInput?.value?.trim();
+      if (!email) return;
+
+      msg.textContent = 'Signing…';
+      msg.className = 'newsletter-message';
+
+      try {
+        // MailerLite's JSONP-style endpoint accepts form-encoded POSTs.
+        // The no-cors submission means we can't read the response, but
+        // MailerLite does process the subscription reliably.
+        const body = new URLSearchParams();
+        body.set('fields[email]', email);
+        body.set('ml-submit', '1');
+        body.set('anticsrf', 'true');
+
+        await fetch(form.action, {
+          method: 'POST',
+          mode: 'no-cors',
+          body,
+        });
+
+        msg.textContent = 'Signed. Welcome to the inn — check your email to confirm.';
+        msg.className = 'newsletter-message success';
+        form.reset();
+      } catch {
+        msg.textContent = 'Something went wrong. Please try again in a moment.';
+        msg.className = 'newsletter-message error';
+      }
+    });
+  }
+</script>
