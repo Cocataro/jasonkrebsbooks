@@ -1,0 +1,32 @@
+{
+  "generated_at": "2026-04-15T23:42:51Z",
+  "task": "JAS-9",
+  "model": "sd_xl_base_1.0.safetensors",
+  "sampler": "dpmpp_2m karras",
+  "variants": [
+    {
+      "name": "v1-hearth-sword",
+      "file": "newsletter-hero-v1-hearth-sword.png"
+    },
+    {
+      "name": "v2-ember-on-bar",
+      "file": "newsletter-hero-v2-ember-on-bar.png"
+    },
+    {
+      "name": "v3-ember-hearth-close",
+      "file": "newsletter-hero-v3-ember-hearth-close.png"
+    },
+    {
+      "name": "v4-keepers-counter",
+      "file": "newsletter-hero-v4-keepers-counter.png"
+    },
+    {
+      "name": "v5-common-room-wide",
+      "file": "newsletter-hero-v5-common-room-wide.png"
+    },
+    {
+      "name": "v6-crossroads-window",
+      "file": "newsletter-hero-v6-crossroads-window.png"
+    }
+  ]
+}
