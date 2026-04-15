@@ -1,0 +1,30 @@
+services:
+  site:
+    image: nginx:alpine
+    container_name: jasonkrebsbooks-site
+    restart: unless-stopped
+    volumes:
+      - ./site:/usr/share/nginx/html:ro
+      - ./nginx-site.conf:/etc/nginx/conf.d/default.conf:ro
+    labels:
+      - traefik.enable=true
+      # HTTPS router
+      - traefik.http.routers.jkb.rule=Host(`jasonkrebsbooks.com`) || Host(`www.jasonkrebsbooks.com`)
+      - traefik.http.routers.jkb.entrypoints=websecure
+      - traefik.http.routers.jkb.tls.certresolver=letsencrypt
+      - traefik.http.services.jkb.loadbalancer.server.port=80
+      # HTTP router redirects to HTTPS (Traefik's global redirect covers this,
+      # but keep it explicit for clarity and as a safety net)
+      - traefik.http.routers.jkb-http.rule=Host(`jasonkrebsbooks.com`) || Host(`www.jasonkrebsbooks.com`)
+      - traefik.http.routers.jkb-http.entrypoints=web
+      - traefik.http.routers.jkb-http.middlewares=jkb-redirect
+      - traefik.http.middlewares.jkb-redirect.redirectscheme.scheme=https
+      - traefik.http.middlewares.jkb-redirect.redirectscheme.permanent=true
+      # Redirect www → apex
+      - traefik.http.routers.jkb-www.rule=Host(`www.jasonkrebsbooks.com`)
+      - traefik.http.routers.jkb-www.entrypoints=websecure
+      - traefik.http.routers.jkb-www.tls.certresolver=letsencrypt
+      - traefik.http.routers.jkb-www.middlewares=jkb-www-redirect
+      - traefik.http.middlewares.jkb-www-redirect.redirectregex.regex=^https?://www\.jasonkrebsbooks\.com/(.*)
+      - traefik.http.middlewares.jkb-www-redirect.redirectregex.replacement=https://jasonkrebsbooks.com/$${1}
+      - traefik.http.middlewares.jkb-www-redirect.redirectregex.permanent=true
