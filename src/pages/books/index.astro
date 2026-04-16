@@ -6,24 +6,40 @@ import Layout from '../../layouts/Layout.astro';
   <main>
     <h1>Books</h1>
 
-    <section class="book">
+    <section class="series">
       <h2>The Crossroads Inn</h2>
       <p class="tagline">A cozy fantasy series in six books.</p>
 
+      <div class="series-illustration">
+        <img
+          src="/illustrations/newsletter-hero.jpg"
+          alt="The Crossroads Inn — a warm counter with lanterns and an open guestbook"
+          width="800"
+          height="800"
+          loading="eager"
+          decoding="async"
+        />
+      </div>
+
       <div class="books-list">
-        <article class="book-entry upcoming">
+        <article class="book-entry featured">
           <h3>Book 1 — <em>The Keeper's Reluctance</em></h3>
-          <p>Coming soon.</p>
+          <p class="book-desc">
+            A retired mercenary inherits a magical inn she doesn't want — and
+            discovers she's better at tending hearths than she ever was at
+            swinging swords.
+          </p>
+          <p class="book-status">Coming soon.</p>
         </article>
 
         <article class="book-entry upcoming">
           <h3>Book 2 — <em>(title to be announced)</em></h3>
-          <p>In draft.</p>
+          <p class="book-status">In draft.</p>
         </article>
 
         <article class="book-entry upcoming">
-          <h3>Books 3–6</h3>
-          <p>In the outline stage.</p>
+          <h3>Books 3&ndash;6</h3>
+          <p class="book-status">In the outline stage.</p>
         </article>
       </div>
     </section>
@@ -31,6 +47,21 @@ import Layout from '../../layouts/Layout.astro';
 </Layout>
 
 <style>
+  .series-illustration {
+    max-width: 240px;
+    margin: 2rem auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow:
+      0 4px 24px -8px rgba(42, 32, 23, 0.2),
+      0 1px 3px rgba(42, 32, 23, 0.1);
+    border: 3px solid rgba(168, 102, 58, 0.2);
+  }
+  .series-illustration img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
   .books-list { margin-top: 2rem; }
   .book-entry {
     padding: 1.5rem 0;
@@ -39,5 +70,22 @@ import Layout from '../../layouts/Layout.astro';
   .book-entry:last-child { border-bottom: none; }
   .book-entry h3 { margin: 0 0 0.5rem; }
   .book-entry em { color: var(--warm); font-style: normal; }
-  .upcoming { opacity: 0.85; }
+  .book-desc {
+    color: var(--ink-soft);
+    font-style: italic;
+    margin: 0.5rem 0;
+  }
+  .book-status {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    opacity: 0.8;
+  }
+  .upcoming { opacity: 0.75; }
+  .featured {
+    background: linear-gradient(135deg, rgba(243, 235, 217, 0.5), transparent);
+    padding: 1.5rem;
+    border-radius: 6px;
+    border: 1px solid rgba(168, 102, 58, 0.12);
+    margin-bottom: 0.5rem;
+  }
 </style>

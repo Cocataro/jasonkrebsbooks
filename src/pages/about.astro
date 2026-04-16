@@ -8,6 +8,17 @@ import Newsletter from '../components/Newsletter.astro';
     <h1>About Jason Krebs</h1>
     <p class="tagline">Cozy fantasy author. Tea drinker. Defender of tired characters.</p>
 
+    <div class="about-illustration">
+      <img
+        src="/illustrations/newsletter-hero.jpg"
+        alt="The Crossroads Inn counter — warm lantern light, an open ledger, and shelves of curiosities"
+        width="800"
+        height="800"
+        loading="eager"
+        decoding="async"
+      />
+    </div>
+
     <p>
       Jason Krebs writes cozy fantasy about tired people, warm rooms, and
       found families. He drinks more tea than coffee, lives somewhere drafty
@@ -23,17 +34,17 @@ import Newsletter from '../components/Newsletter.astro';
     </p>
 
     <p>
-      If you liked <em>Legends & Lattes</em>, <em>Bookshops & Bonedust</em>,
+      If you liked <em>Legends &amp; Lattes</em>, <em>Bookshops &amp; Bonedust</em>,
       <em>Can't Spell Treason Without Tea</em>, or <em>The Very Secret Society
       of Irregular Witches</em>, Jason hopes you'll feel at home at the
       Crossroads Inn.
     </p>
 
-    <hr />
+    <div class="ornament" aria-hidden="true">&#10044;</div>
 
     <Newsletter />
 
-    <hr />
+    <div class="ornament" aria-hidden="true">&#10044;</div>
 
     <h2>Elsewhere</h2>
     <ul>
@@ -43,3 +54,29 @@ import Newsletter from '../components/Newsletter.astro';
     </ul>
   </main>
 </Layout>
+
+<style>
+  .about-illustration {
+    max-width: 280px;
+    margin: 2rem auto;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow:
+      0 4px 24px -8px rgba(42, 32, 23, 0.2),
+      0 1px 3px rgba(42, 32, 23, 0.1);
+    border: 3px solid rgba(168, 102, 58, 0.2);
+  }
+  .about-illustration img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .ornament {
+    text-align: center;
+    color: var(--warm-soft);
+    font-size: 1.2rem;
+    margin: 2.5rem 0;
+    opacity: 0.5;
+    letter-spacing: 0.5em;
+  }
+</style>
