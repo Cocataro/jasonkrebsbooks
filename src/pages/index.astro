@@ -9,14 +9,13 @@ const description = 'Cozy fantasy novels by Jason Krebs. The Crossroads Inn seri
 <Layout title={title} description={description}>
   <div class="hero-banner">
     <img
-      src="/illustrations/hero-landing.jpg"
-      alt="The Crossroads Inn at dusk — warm light glowing from its windows, five roads meeting beneath a twilight sky"
+      src="/illustrations/hero-v1-exterior-dusk.jpg"
+      alt="A cozy stone inn at dusk — warm golden light glowing from its windows, cobblestone path winding through autumn trees beneath a sunset sky"
       width="1920"
       height="800"
       loading="eager"
       decoding="async"
       class="hero-img"
-      onerror="this.parentElement.classList.add('hero-banner--no-img')"
     />
   </div>
   <main>
@@ -31,7 +30,9 @@ const description = 'Cozy fantasy novels by Jason Krebs. The Crossroads Inn seri
       <p class="soon">Book 1 coming soon.</p>
     </header>
 
-    <div class="ornament" aria-hidden="true"><span>✦</span></div>
+    <div class="ornament" aria-hidden="true">
+      <img src="/illustrations/divider-vine.svg" alt="" width="600" height="60" class="divider-svg" />
+    </div>
 
     <section class="about-preview">
       <h2>About Jason</h2>
@@ -45,11 +46,15 @@ const description = 'Cozy fantasy novels by Jason Krebs. The Crossroads Inn seri
       </p>
     </section>
 
-    <div class="ornament" aria-hidden="true"><span>✦</span></div>
+    <div class="ornament" aria-hidden="true">
+      <img src="/illustrations/divider-lantern.svg" alt="" width="600" height="90" class="divider-svg" />
+    </div>
 
     <Newsletter />
 
-    <div class="ornament" aria-hidden="true"><span>✦</span></div>
+    <div class="ornament" aria-hidden="true">
+      <img src="/illustrations/divider-teacup.svg" alt="" width="600" height="80" class="divider-svg" />
+    </div>
 
     <section class="blog-preview">
       <h2>From the inn</h2>
@@ -72,7 +77,7 @@ const description = 'Cozy fantasy novels by Jason Krebs. The Crossroads Inn seri
     align-items: center;
     justify-content: center;
   }
-  .hero-banner--no-img {
+  .hero-banner:empty {
     display: none;
   }
   .hero-img {
@@ -118,34 +123,17 @@ const description = 'Cozy fantasy novels by Jason Krebs. The Crossroads Inn seri
     font-size: 1.05rem;
   }
 
-  /* ── Ornamental dividers ── */
+  /* ── Ornamental SVG dividers ── */
   .ornament {
     text-align: center;
     margin: 2.5rem 0;
     line-height: 1;
   }
-  .ornament span {
+  .divider-svg {
     display: inline-block;
-    color: var(--warm-soft);
-    font-size: 0.9rem;
-    opacity: 0.55;
-    position: relative;
-  }
-  .ornament span::before,
-  .ornament span::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 4rem;
-    height: 1px;
-    background: var(--warm-soft);
-    opacity: 0.4;
-  }
-  .ornament span::before {
-    right: calc(100% + 0.75rem);
-  }
-  .ornament span::after {
-    left: calc(100% + 0.75rem);
+    max-width: 100%;
+    height: auto;
+    opacity: 0.85;
   }
 
   /* ── Content sections ── */
@@ -158,9 +146,8 @@ const description = 'Cozy fantasy novels by Jason Krebs. The Crossroads Inn seri
     .hero {
       padding: 2rem 0 2.5rem;
     }
-    .ornament span::before,
-    .ornament span::after {
-      width: 2.5rem;
+    .divider-svg {
+      max-width: 80%;
     }
   }
 </style>
