@@ -41,10 +41,10 @@ const canonical = new URL(Astro.url.pathname, siteUrl).toString();
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={new URL(ogImage, siteUrl).toString()} />
 
-  <!-- Web font: warm serif for headings; system stack for body -->
+  <!-- Web fonts: display serif for series title, warm serif for headings, readable serif for body -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@400;600&display=swap" rel="stylesheet" />
 
   <style is:global>
     :root {
@@ -56,6 +56,9 @@ const canonical = new URL(Astro.url.pathname, siteUrl).toString();
       --warm-soft: #c98c5a;
       --leaf: #556b4a;
       --max-width: 68ch;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-heading: 'EB Garamond', Georgia, serif;
+      --font-body: 'Crimson Pro', Georgia, 'Times New Roman', serif;
     }
     * { box-sizing: border-box; }
     html, body {
@@ -63,12 +66,12 @@ const canonical = new URL(Astro.url.pathname, siteUrl).toString();
       padding: 0;
       background: var(--bg);
       color: var(--ink);
-      font-family: 'Crimson Pro', Georgia, 'Times New Roman', serif;
+      font-family: var(--font-body);
       font-size: 20px;
       line-height: 1.6;
     }
     h1, h2, h3, h4 {
-      font-family: 'EB Garamond', Georgia, serif;
+      font-family: var(--font-heading);
       font-weight: 600;
       letter-spacing: -0.01em;
       line-height: 1.2;
@@ -82,7 +85,7 @@ const canonical = new URL(Astro.url.pathname, siteUrl).toString();
     .container { max-width: var(--max-width); margin: 0 auto; padding: 0 1.25rem; }
     .tagline { color: var(--ink-soft); font-style: italic; font-size: 1.1rem; }
     button, .button {
-      font-family: 'EB Garamond', serif;
+      font-family: var(--font-heading);
       background: var(--warm);
       color: #fffaf0;
       border: none;

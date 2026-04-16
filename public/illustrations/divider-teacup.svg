@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 80" width="600" height="80" fill="none">
+  <!-- Left rule line -->
+  <line x1="10" y1="55" x2="235" y2="55" stroke="#C17D3C" stroke-width="1" opacity="0.4"/>
+  <!-- Left decorative dots -->
+  <circle cx="220" cy="55" r="2" fill="#C17D3C" opacity="0.5"/>
+  <circle cx="208" cy="55" r="1.5" fill="#C17D3C" opacity="0.4"/>
+  <circle cx="198" cy="55" r="1" fill="#C17D3C" opacity="0.35"/>
+
+  <!-- Tea cup body -->
+  <path d="M268,38 L272,62 Q285,68 300,68 Q315,68 328,62 L332,38 Z"
+        fill="#F5EED8" stroke="#C17D3C" stroke-width="1.5" stroke-linejoin="round"/>
+  <!-- Cup rim -->
+  <ellipse cx="300" cy="38" rx="32" ry="7" fill="#F5EED8" stroke="#C17D3C" stroke-width="1.5"/>
+  <!-- Tea surface inside -->
+  <ellipse cx="300" cy="38" rx="26" ry="5" fill="#C17D3C" opacity="0.25"/>
+  <!-- Saucer -->
+  <ellipse cx="300" cy="67" rx="38" ry="6" fill="#F5EED8" stroke="#C17D3C" stroke-width="1.3"/>
+  <!-- Handle -->
+  <path d="M332,46 Q350,46 350,55 Q350,64 332,62" stroke="#C17D3C" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Steam curls -->
+  <path d="M290,28 Q287,20 290,14 Q293,8 290,2"
+        stroke="#C17D3C" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <path d="M300,26 Q297,18 300,12 Q303,6 300,0"
+        stroke="#C17D3C" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.5"/>
+  <path d="M310,28 Q307,20 310,14 Q313,8 310,2"
+        stroke="#C17D3C" stroke-width="1.3" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <!-- Small herb sprig in cup -->
+  <path d="M296,36 L297,40" stroke="#4A7C59" stroke-width="1" opacity="0.7"/>
+  <ellipse cx="294" cy="35" rx="3" ry="2" transform="rotate(-30 294 35)" fill="#4A7C59" opacity="0.7"/>
+
+  <!-- Right decorative dots -->
+  <circle cx="380" cy="55" r="2" fill="#C17D3C" opacity="0.5"/>
+  <circle cx="392" cy="55" r="1.5" fill="#C17D3C" opacity="0.4"/>
+  <circle cx="402" cy="55" r="1" fill="#C17D3C" opacity="0.35"/>
+  <!-- Right rule line -->
+  <line x1="365" y1="55" x2="590" y2="55" stroke="#C17D3C" stroke-width="1" opacity="0.4"/>
+</svg>

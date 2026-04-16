@@ -7,10 +7,21 @@ const description = 'Cozy fantasy novels by Jason Krebs. The Crossroads Inn seri
 ---
 
 <Layout title={title} description={description}>
+  <div class="hero-banner">
+    <img
+      src="/illustrations/hero-v1-exterior-dusk.jpg"
+      alt="A cozy stone inn at dusk — warm golden light glowing from its windows, cobblestone path winding through autumn trees beneath a sunset sky"
+      width="1920"
+      height="800"
+      loading="eager"
+      decoding="async"
+      class="hero-img"
+    />
+  </div>
   <main>
     <header class="hero">
       <p class="eyebrow">A cozy fantasy series</p>
-      <h1>The Crossroads Inn</h1>
+      <h1 class="series-title">The Crossroads Inn</h1>
       <p class="tagline">
         An ex-mercenary becomes the reluctant keeper of a magical inn at the
         crossroads of five realms — healing others while trying to outrun her
@@ -18,6 +29,10 @@ const description = 'Cozy fantasy novels by Jason Krebs. The Crossroads Inn seri
       </p>
       <p class="soon">Book 1 coming soon.</p>
     </header>
+
+    <div class="ornament" aria-hidden="true">
+      <img src="/illustrations/divider-vine.svg" alt="" width="600" height="60" class="divider-svg" />
+    </div>
 
     <section class="about-preview">
       <h2>About Jason</h2>
@@ -31,9 +46,15 @@ const description = 'Cozy fantasy novels by Jason Krebs. The Crossroads Inn seri
       </p>
     </section>
 
-    <hr />
+    <div class="ornament" aria-hidden="true">
+      <img src="/illustrations/divider-lantern.svg" alt="" width="600" height="90" class="divider-svg" />
+    </div>
 
     <Newsletter />
+
+    <div class="ornament" aria-hidden="true">
+      <img src="/illustrations/divider-teacup.svg" alt="" width="600" height="80" class="divider-svg" />
+    </div>
 
     <section class="blog-preview">
       <h2>From the inn</h2>
@@ -46,29 +67,87 @@ const description = 'Cozy fantasy novels by Jason Krebs. The Crossroads Inn seri
 </Layout>
 
 <style>
+  /* ── Hero banner: full-width landscape image above the fold ── */
+  .hero-banner {
+    width: 100%;
+    max-height: 50vh;
+    overflow: hidden;
+    background: var(--bg-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero-banner:empty {
+    display: none;
+  }
+  .hero-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    object-position: center 40%;
+    max-height: 50vh;
+  }
+
+  /* ── Hero text block ── */
   .hero {
     text-align: center;
-    padding: 2rem 0 4rem;
+    padding: 2.5rem 0 3rem;
   }
   .eyebrow {
     color: var(--warm);
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    font-size: 0.8rem;
     font-weight: 600;
-    margin: 0 0 0.5rem;
-    font-family: 'EB Garamond', serif;
+    margin: 0 0 0.75rem;
+    font-family: var(--font-heading);
   }
-  .hero h1 {
-    font-size: 3.5rem;
-    margin: 0.5rem 0 1rem;
+  .series-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    margin: 0.25rem 0 1.25rem;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+    color: var(--ink);
+  }
+  .tagline {
+    max-width: 38ch;
+    margin: 0 auto;
   }
   .soon {
     color: var(--ink-soft);
     font-style: italic;
     margin-top: 2rem;
+    font-size: 1.05rem;
   }
+
+  /* ── Ornamental SVG dividers ── */
+  .ornament {
+    text-align: center;
+    margin: 2.5rem 0;
+    line-height: 1;
+  }
+  .divider-svg {
+    display: inline-block;
+    max-width: 100%;
+    height: auto;
+    opacity: 0.85;
+  }
+
+  /* ── Content sections ── */
   .about-preview, .blog-preview {
-    margin: 3rem 0;
+    margin: 2.5rem 0;
+  }
+
+  /* ── Mobile refinements ── */
+  @media (max-width: 640px) {
+    .hero {
+      padding: 2rem 0 2.5rem;
+    }
+    .divider-svg {
+      max-width: 80%;
+    }
   }
 </style>
