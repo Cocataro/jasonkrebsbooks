@@ -1,0 +1,78 @@
+---
+// Warm site header for the Crossroads Inn author site.
+// Lantern favicon SVG repurposed as a small brand mark.
+---
+
+<nav class="site-nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-brand">
+      <svg class="nav-lantern" viewBox="0 0 64 64" width="24" height="24" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M32 10 L32 16"/>
+          <path d="M20 16 L44 16 L44 18 L20 18 Z" fill="currentColor"/>
+          <rect x="24" y="18" width="16" height="28" rx="2" fill="var(--bg-accent)"/>
+          <circle cx="32" cy="32" r="5" fill="currentColor" opacity="0.6"/>
+          <path d="M20 46 L44 46 L44 48 L20 48 Z" fill="currentColor"/>
+          <path d="M32 48 L32 54"/>
+        </g>
+      </svg>
+      <span>Jason Krebs</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/about">About</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li><a href="/books">Books</a></li>
+    </ul>
+  </div>
+</nav>
+
+<style>
+  .site-nav {
+    border-bottom: 1px solid rgba(168, 102, 58, 0.15);
+    background: linear-gradient(180deg, rgba(243, 235, 217, 0.5), transparent);
+  }
+  .nav-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ink);
+    border-bottom: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-brand:hover {
+    color: var(--warm);
+    border-bottom: none;
+  }
+  .nav-lantern {
+    color: var(--warm);
+  }
+  .nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1.5rem;
+  }
+  .nav-links a {
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    border-bottom: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-links a:hover {
+    color: var(--warm);
+    border-bottom: none;
+  }
+</style>

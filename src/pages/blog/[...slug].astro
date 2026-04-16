@@ -34,7 +34,7 @@ const { Content } = await post.render();
       </footer>
     </article>
 
-    <hr />
+    <div class="ornament" aria-hidden="true">&#10044;</div>
 
     <Newsletter />
 
@@ -61,5 +61,13 @@ const { Content } = await post.render();
   }
   .back {
     margin-top: 3rem;
+  }
+  .ornament {
+    text-align: center;
+    color: var(--warm-soft);
+    font-size: 1.2rem;
+    margin: 2.5rem 0;
+    opacity: 0.5;
+    letter-spacing: 0.5em;
   }
 </style>
