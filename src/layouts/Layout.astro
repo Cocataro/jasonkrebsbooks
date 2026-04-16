@@ -64,11 +64,29 @@ const canonical = new URL(Astro.url.pathname, siteUrl).toString();
     html, body {
       margin: 0;
       padding: 0;
-      background: var(--bg);
       color: var(--ink);
       font-family: var(--font-body);
       font-size: 20px;
       line-height: 1.6;
+    }
+    /* Parchment texture — cream overlay at ~88% opacity leaves ~12% texture showing.
+       Gradient-over-image keeps text-to-bg contrast effectively identical to the flat
+       cream bg (WCAG AA preserved), while warming the page visually. */
+    body {
+      background-color: var(--bg);
+      background-image:
+        linear-gradient(rgba(250, 246, 239, 0.88), rgba(250, 246, 239, 0.88)),
+        url('/textures/parchment-bg.jpg');
+      background-size: auto, cover;
+      background-position: center, center;
+      background-repeat: no-repeat, no-repeat;
+      background-attachment: fixed, fixed;
+    }
+    /* Mobile fallback — fixed attachment is jumpy on iOS Safari; scroll is fine. */
+    @media (max-width: 768px) {
+      body {
+        background-attachment: scroll, scroll;
+      }
     }
     h1, h2, h3, h4 {
       font-family: var(--font-heading);
