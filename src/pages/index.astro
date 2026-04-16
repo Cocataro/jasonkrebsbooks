@@ -27,11 +27,42 @@ const description = 'Cozy fantasy novels by Jason Krebs. The Crossroads Inn seri
         crossroads of five realms — healing others while trying to outrun her
         own past.
       </p>
-      <p class="soon">Book 1 coming soon.</p>
     </header>
 
     <div class="ornament" aria-hidden="true">
       <img src="/illustrations/divider-vine.svg" alt="" width="600" height="60" class="divider-svg" />
+    </div>
+
+    <section class="book-feature" aria-labelledby="book-one-heading">
+      <div class="book-mockup-wrap">
+        <img
+          src="/illustrations/book-mockup-b1.jpg"
+          alt="Book One — The Crossroads Inn, coming soon (cover mockup)"
+          width="600"
+          height="900"
+          loading="lazy"
+          decoding="async"
+          class="book-mockup"
+        />
+      </div>
+      <div class="book-feature-copy">
+        <p class="eyebrow">Book One</p>
+        <h2 id="book-one-heading">The Crossroads Inn</h2>
+        <p class="book-hook">
+          The inn at the crossroads doesn't choose its keeper. It keeps her.
+        </p>
+        <p>
+          The first of six cozy fantasy novels. Warm windows, tired travellers,
+          and a doorway every road leads back to.
+        </p>
+        <p class="soon">
+          Coming soon — <a href="/follow">follow for release alerts</a>.
+        </p>
+      </div>
+    </section>
+
+    <div class="ornament" aria-hidden="true">
+      <img src="/illustrations/divider-sprig.svg" alt="" width="600" height="60" class="divider-svg" />
     </div>
 
     <section class="about-preview">
@@ -141,6 +172,41 @@ const description = 'Cozy fantasy novels by Jason Krebs. The Crossroads Inn seri
     margin: 2.5rem 0;
   }
 
+  /* ── Book 1 feature ── */
+  .book-feature {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    margin: 3rem 0;
+  }
+  .book-mockup-wrap {
+    flex: 0 0 38%;
+    max-width: 260px;
+  }
+  .book-mockup {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 3px;
+    box-shadow:
+      0 1px 2px rgba(42, 32, 23, 0.08),
+      0 10px 30px -6px rgba(42, 32, 23, 0.28);
+  }
+  .book-feature-copy {
+    flex: 1 1 auto;
+  }
+  .book-feature-copy h2 {
+    margin: 0.25rem 0 1rem;
+  }
+  .book-hook {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--ink);
+    margin: 0 0 1rem;
+    line-height: 1.35;
+  }
+
   /* ── Mobile refinements ── */
   @media (max-width: 640px) {
     .hero {
@@ -148,6 +214,18 @@ const description = 'Cozy fantasy novels by Jason Krebs. The Crossroads Inn seri
     }
     .divider-svg {
       max-width: 80%;
+    }
+    .book-feature {
+      flex-direction: column;
+      gap: 1.5rem;
+      text-align: center;
+    }
+    .book-mockup-wrap {
+      flex-basis: auto;
+      max-width: 220px;
+    }
+    .book-hook {
+      font-size: 1.2rem;
     }
   }
 </style>
